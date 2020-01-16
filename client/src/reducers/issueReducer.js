@@ -44,6 +44,8 @@ export default function(state = initialState, action) {
       return {
         ...state
       }
+    case ADD_ISSUE:
+      return
     default:
       return state
   }

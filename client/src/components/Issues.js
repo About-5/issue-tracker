@@ -4,8 +4,7 @@ import { useSelector } from 'react-redux'
 
 const Issues = () => {
   const issues = useSelector(state => state.issue)
-  console.log(issues.issues)
-  return issues.issues.map(issue => <IssueItem key={issue.id} />)
+  return issues.issues.map(issue => <IssueItem key={issue.id} issue={issue} />)
 }
 
 export default Issues

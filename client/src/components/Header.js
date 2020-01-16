@@ -8,10 +8,15 @@ export default function Header(props) {
   return (
     <div className='header'>
       <span style={{ paddingTop: '12px' }}>
-        <button className='headerBtn' style={{ width: '5%', paddingLeft: '5px' }}>ID</button>
-        <button className='headerBtn' style={{ width: '65%' }}>Subject</button>
-        <button className='headerBtn' style={{ width: '25%' }}>Author</button>
-        <button className='headerBtn' style={{ width: '5%' }}>Status</button>
+        <button className='headerBtn' style={{ width: '70%' }}>
+          Subject
+        </button>
+        <button className='headerBtn' style={{ width: '25%' }}>
+          Author
+        </button>
+        <button className='headerBtn' style={{ width: '5%' }}>
+          Status
+        </button>
       </span>
     </div>
   )

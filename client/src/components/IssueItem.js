@@ -9,21 +9,20 @@ const IssueItem = props => {
       height: '10px',
       width: '20px',
       background:
-        // props.issue.severity === 3
-        //   ? '#f00'
-        //   : props.issue.severity === 2
-        //   ? '#ffa500'
-        '#ff0'
+        props.issue.severity === 3
+          ? '#f00'
+          : props.issue.severity === 2
+          ? '#ffa500'
+          : '#ff0'
     }
   }
 
   return (
     <div className='issueItem'>
-      <p style={{ width: '2.5%', paddingLeft: '5px' }}>id</p>
       <div style={getColor()}></div>
-      <p style={{ width: '65%' }}>subject</p>
-      <p style={{ width: '24.5%' }}>author</p>
-      <p style={{ minWidth: '85px' }}>status</p>
+      <p style={{ width: '70%' }}>{props.issue.subject}</p>
+      <p style={{ width: '25%' }}>{props.issue.author}</p>
+      <p style={{ minWidth: '85px' }}>{props.issue.status}</p>
     </div>
   )
 }
