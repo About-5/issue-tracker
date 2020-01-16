@@ -1,5 +1,5 @@
 {
-  "name": "tracker-system",
+  "name": "issue-tracker",
   "version": "1.0.0",
   "description": "Issue tracker",
   "main": "server.js",
