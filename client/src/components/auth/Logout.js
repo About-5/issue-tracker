@@ -12,7 +12,7 @@ const Logout = () => {
 
   return (
     <Fragment>
-      <NavLink onClick={onClick} href='#'>
+      <NavLink className='navbar-btn' onClick={onClick} href='#'>
         Logout
       </NavLink>
     </Fragment>

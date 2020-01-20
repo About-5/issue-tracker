@@ -2,6 +2,7 @@ import {
   GET_ISSUES,
   ADD_ISSUE,
   DELETE_ISSUE,
+  UPDATE_ISSUE,
   ISSUES_LOADING
 } from '../actions/types'
 
@@ -27,6 +28,14 @@ export default function(state = initialState, action) {
       return {
         ...state,
         issues: [action.payload, ...state.issues]
+      }
+    case UPDATE_ISSUE:
+      return {
+        ...state,
+        issues: [
+          action.payload,
+          ...state.issues.filter(issue => issue._id !== action.payload._id)
+        ]
       }
     case ISSUES_LOADING:
       return {

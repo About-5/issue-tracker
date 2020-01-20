@@ -1,42 +1,40 @@
 import React, { useState } from 'react'
 import {
-  Button,
   Modal,
   ModalHeader,
   ModalBody,
+  Button,
   Form,
   FormGroup,
   Label,
   Input
 } from 'reactstrap'
-import { useDispatch, useSelector } from 'react-redux'
-import { addIssue } from '../actions/issueActions'
+import { useSelector, useDispatch } from 'react-redux'
+import { updateIssue } from '../actions/issueActions'
 
-const IssueModal = () => {
-  const [state, setState] = useState({
-    subject: '',
-    description: '',
-    severity: 0,
-    modal: false
-  })
-
-  const dispatch = useDispatch()
+const EditModal = props => {
   const auth = useSelector(state => state.auth)
+  const dispatch = useDispatch()
+  const [modal, setModal] = useState(false)
+  const [state, setState] = useState(props.issue)
 
-  const toggle = () => setState({ ...state, modal: !state.modal })
+  const toggle = () => {
+    setModal(!modal)
+  }
 
   const onSubmit = e => {
     e.preventDefault()
 
-    const newIssue = {
+    const editIssue = {
+      _id: state._id,
       subject: state.subject,
       description: state.description,
       severity: state.severity,
-      author: auth.user.name,
-      status: 1
+      author: state.author,
+      status: state.status
     }
 
-    dispatch(addIssue(newIssue))
+    dispatch(updateIssue(editIssue))
 
     toggle()
   }
@@ -44,12 +42,12 @@ const IssueModal = () => {
   return (
     <div>
       {auth.isAuthenticated && (
-        <Button color='dark' style={{ marginBottom: '2rem' }} onClick={toggle}>
-          Add Issue
+        <Button color='dark' className='modalBtn' onClick={toggle}>
+          Edit
         </Button>
       )}
-      <Modal isOpen={state.modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Add Issue</ModalHeader>
+      <Modal isOpen={modal} toggle={toggle}>
+        <ModalHeader toggle={toggle}>Edit Issue</ModalHeader>
         <ModalBody>
           <Form onSubmit={onSubmit}>
             <FormGroup>
@@ -58,7 +56,7 @@ const IssueModal = () => {
                 type='text'
                 name='subject'
                 id='issue'
-                placeholder='Subject'
+                value={state.subject}
                 className='mb-2'
                 onChange={e =>
                   setState({ ...state, [e.target.name]: e.target.value })
@@ -69,7 +67,7 @@ const IssueModal = () => {
                 type='textarea'
                 name='description'
                 id='issue'
-                placeholder='Description'
+                value={state.description}
                 className='mb-2'
                 onChange={e =>
                   setState({ ...state, [e.target.name]: e.target.value })
@@ -80,7 +78,7 @@ const IssueModal = () => {
                 type='number'
                 name='severity'
                 id='issue'
-                placeholder='1'
+                value={state.severity}
                 className='mb-2'
                 min={1}
                 max={3}
@@ -88,8 +86,21 @@ const IssueModal = () => {
                   setState({ ...state, [e.target.name]: e.target.value })
                 }
               />
+              <Label for='status'>Status</Label>
+              <Input
+                type='number'
+                name='status'
+                id='issue'
+                value={state.status}
+                className='mb-2'
+                min={1}
+                max={2}
+                onChange={e =>
+                  setState({ ...state, [e.target.name]: e.target.value })
+                }
+              />
               <Button color='dark' style={{ marginTop: '2rem' }} block>
-                Add Issue
+                Edit Issue
               </Button>
             </FormGroup>
           </Form>
@@ -99,4 +110,4 @@ const IssueModal = () => {
   )
 }
 
-export default IssueModal
+export default EditModal

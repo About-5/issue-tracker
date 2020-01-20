@@ -13,10 +13,21 @@ const IssueSchema = new Schema({
   },
   severity: {
     type: Number,
+    min: 1,
+    max: 3,
     required: true
   },
   description: {
+    type: String,
+    default: 'No description given'
+  },
+  author: {
     type: String
+  },
+  status: {
+    type: Number,
+    min: 1,
+    max: 2
   }
 })
 

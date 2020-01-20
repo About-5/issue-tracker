@@ -1,5 +1,11 @@
 import axios from 'axios'
-import { GET_ISSUES, ADD_ISSUE, DELETE_ISSUE, ISSUES_LOADING } from './types'
+import {
+  GET_ISSUES,
+  ADD_ISSUE,
+  DELETE_ISSUE,
+  UPDATE_ISSUE,
+  ISSUES_LOADING
+} from './types'
 import { tokenConfig } from './authActions'
 import { returnErrors } from './errorActions'
 
@@ -39,6 +45,21 @@ export const deleteIssue = id => (dispatch, getState) => {
       dispatch({
         type: DELETE_ISSUE,
         payload: id
+      })
+    )
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    )
+}
+
+export const updateIssue = issue => (dispatch, getState) => {
+  console.log(issue)
+  axios
+    .put(`/api/issues/${issue._id}/update`, issue, tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: UPDATE_ISSUE,
+        payload: res.data
       })
     )
     .catch(err =>

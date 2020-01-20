@@ -1,6 +1,7 @@
 export const GET_ISSUES = 'GET_ISSUES'
 export const ADD_ISSUE = 'ADD_ISSUE'
 export const DELETE_ISSUE = 'DELETE_ISSUE'
+export const UPDATE_ISSUE = 'UPDATE_ISSUE'
 export const ISSUES_LOADING = 'ISSUES_LOADING'
 export const USER_LOADING = 'USER_LOADING'
 export const USER_LOADED = 'USER_LOADED'

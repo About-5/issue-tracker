@@ -21,7 +21,7 @@ const Header = () => {
   const authLinks = (
     <Fragment>
       <NavItem>
-        <span className='navbar-text mr-3'>
+        <span className='navbar-text mr-3' color='light'>
           <strong>{auth.user ? `Welcome ${auth.user.name}` : ''}</strong>
         </span>
       </NavItem>

@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import IssueItem from './IssueItem'
 import { useSelector, useDispatch } from 'react-redux'
 import { getIssues } from '../actions/issueActions'
+import { ListGroup, Container } from 'reactstrap'
+import IssueModal from './/IssueModal'
 
 const Issues = () => {
   const issues = useSelector(state => state.issue.issues)
@@ -9,9 +11,18 @@ const Issues = () => {
 
   useEffect(() => {
     dispatch(getIssues())
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-  return issues.map(issue => <IssueItem key={issue._id} issue={issue} />)
+  }, [dispatch])
+
+  return (
+    <Container>
+      <ListGroup>
+        {issues.map(issue => (
+          <IssueItem key={issue._id} issue={issue} />
+        ))}
+      </ListGroup>
+      <IssueModal className='ml-1' />
+    </Container>
+  )
 }
 
 export default Issues
