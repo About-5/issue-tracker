@@ -45,7 +45,6 @@ router.delete('/:id', auth, (req, res) => {
 // @desc Update an issue
 // @access private
 router.put('/:id/update', auth, (req, res) => {
-  console.log('req', req)
   Issue.findByIdAndUpdate(
     { _id: req.params.id },
     req.body,
